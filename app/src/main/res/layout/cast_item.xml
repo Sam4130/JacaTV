@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/cast_list"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/person_picture"
+            android:src="@mipmap/brian_cranston"
+            android:scaleType="centerInside"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/person_name"
+            android:text="Brian Cranston"
+            android:layout_toRightOf="@id/person_picture"
+            android:textSize="@dimen/abc_text_size_medium_material"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/person_picture"
+            android:layout_below="@id/person_name"
+            android:text="Character:"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/character_name"
+            android:text="Walter White"
+            android:layout_below="@+id/person_name"
+            android:layout_alignRight="@+id/person_name"
+            android:layout_alignEnd="@+id/person_name" />
+    </RelativeLayout>
+</merge>
