@@ -23,11 +23,11 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return ShowDetailFragment_.builder().build();
+                return ShowDetailFragment_.builder().showId(showId).build();
             case 1:
                 return CastListFragment_.builder().showId(this.showId).build();
             case 2:
-                return EpisodeListFragment_.builder().build();
+                return EpisodeListFragment_.builder().showId(this.showId).build();
             default:
                 return null;
         }
