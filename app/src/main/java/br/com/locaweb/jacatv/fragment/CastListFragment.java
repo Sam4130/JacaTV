@@ -16,7 +16,6 @@ import java.util.List;
 import br.com.locaweb.jacatv.adapter.CastAdapter;
 import br.com.locaweb.jacatv.connection.RestConnection;
 import br.com.locaweb.jacatv.model.Cast;
-import br.com.locaweb.jacatv.model.CastListResponse;
 
 @EFragment
 public class CastListFragment extends ListFragment {
@@ -30,9 +29,7 @@ public class CastListFragment extends ListFragment {
     RestConnection connection;
 
     @AfterViews
-    public void init() {
-        fetchData();
-    }
+    public void init() { fetchData(); }
 
     @UiThread
     @Override
@@ -47,8 +44,6 @@ public class CastListFragment extends ListFragment {
     }
 
     private List<Cast> getCast() {
-        CastListResponse matches = connection.getCast(showId);
-        //List<Match> matches = new Select().all().from(Match.class).execute();
-        return matches.getCast();
+        return connection.getCast(showId);
     }
 }
