@@ -1,31 +1,25 @@
 package br.com.locaweb.jacatv.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Cast {
-    private String personName, characterName, imageUrl;
+    private Person person;
 
-    public String getPersonName() {
-        return personName;
+    private Character character;
+
+    public Person getPerson() {
+        return person;
     }
 
-    public void setPersonName(String personName) {
-        this.personName = personName;
+    public void setPersonName(Person person) {
+        this.person = person;
     }
 
-    public String getCharacterName() {
-        return characterName;
+    public Character getCharacter() {
+        return character;
     }
 
-    public void setCharacterName(String characterName) {
-        this.characterName = characterName;
+    public void setCharacterName(Character character) {
+        this.character = character;
     }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-
 }

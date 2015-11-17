@@ -1,23 +1,34 @@
 package br.com.locaweb.jacatv.model;
 
 public class Episode {
-    private String episodeName;
-    private int episodeNumber, season;
+    private String name, summary;
 
-    public String getEpisodeName() {
-        return episodeName;
+    private int number, season;
+
+    private Image image;
+
+    public String getName() {
+        return name;
     }
 
-    public void setEpisodeName(String episodeName) {
-        this.episodeName = episodeName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getEpisodeNumber() {
-        return episodeNumber;
+    public String getSummary() {
+        return summary;
     }
 
-    public void setEpisodeNumber(int episodeNumber) {
-        this.episodeNumber = episodeNumber;
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public int getSeason() {
@@ -26,5 +37,13 @@ public class Episode {
 
     public void setSeason(int season) {
         this.season = season;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }

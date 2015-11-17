@@ -6,6 +6,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
@@ -33,6 +35,11 @@ public class CastItemView extends LinearLayout {
     }
 
     public void bind(Cast cast) {
-
+        personName.setText(cast.getPerson().getName());
+        characterName.setText(cast.getCharacter().getName());
+        Picasso.with(getContext())
+                .load(cast.getPerson().getImage().getMedium())
+                .placeholder(R.mipmap.noimg)
+                .into(personPicture);
     }
 }
