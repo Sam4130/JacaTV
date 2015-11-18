@@ -9,6 +9,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.OrmLiteDao;
+import org.androidannotations.annotations.Receiver;
 import org.androidannotations.annotations.UiThread;
 
 import java.sql.SQLException;
@@ -17,6 +18,7 @@ import java.util.List;
 import br.com.locaweb.jacatv.adapter.ShowAdapter;
 import br.com.locaweb.jacatv.database.DatabaseHelper;
 import br.com.locaweb.jacatv.model.Show;
+import br.com.locaweb.jacatv.service.TvShowIntentService;
 
 @EFragment
 public class ShowListFragment extends ListFragment {
@@ -40,10 +42,10 @@ public class ShowListFragment extends ListFragment {
         setListAdapter(adapter);
     }
 
+    @Receiver(actions = {TvShowIntentService.ACTION_SAVE_DONE})
     public void fetchData() {
         try {
             show = daoTvShow.queryBuilder().orderBy("name", true).query();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }

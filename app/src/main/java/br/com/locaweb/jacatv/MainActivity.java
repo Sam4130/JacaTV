@@ -1,40 +1,31 @@
 package br.com.locaweb.jacatv;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.SearchView;
+
+import com.j256.ormlite.dao.Dao;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.Receiver;
+import org.androidannotations.annotations.OrmLiteDao;
+import org.androidannotations.annotations.ViewById;
 
-import br.com.locaweb.jacatv.fragment.ShowListFragment;
-import br.com.locaweb.jacatv.fragment.ShowListFragment_;
-import br.com.locaweb.jacatv.service.TvShowIntentService;
+import br.com.locaweb.jacatv.database.DatabaseHelper;
+import br.com.locaweb.jacatv.model.Show;
 import br.com.locaweb.jacatv.service.TvShowIntentService_;
 
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
 
-    ShowListFragment fragment;
+    @ViewById
+    SearchView searchShow;
+
+    @OrmLiteDao(helper = DatabaseHelper.class)
+    Dao<Show, Long> daoTvShow;
 
     @AfterViews
     public void init() {
-        final FragmentManager fragmentManager = getSupportFragmentManager();
-        final FragmentTransaction transaction = fragmentManager.beginTransaction();
-        fragment = ShowListFragment_.builder().build();
-        transaction.add(R.id.container, fragment);
-        transaction.commit();
-
         TvShowIntentService_.intent(this).fetchShows().start();
-    }
 
-    @Receiver(actions = {TvShowIntentService.ACTION_SAVE_DONE})
-    public void actionServiceDone() {
-        setupView();
-    }
-
-    public void setupView() {
-        fragment.fetchData();
     }
 }

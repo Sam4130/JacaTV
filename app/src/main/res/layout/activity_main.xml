@@ -14,9 +14,10 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <FrameLayout
+    <fragment
         android:layout_below="@id/searchShow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/container" />
+        android:id="@+id/container"
+        class="br.com.locaweb.jacatv.fragment.ShowListFragment_"/>
 </RelativeLayout>
