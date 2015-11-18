@@ -31,7 +31,7 @@ public class DetailsActivity extends AppCompatActivity {
         adapter = new MainPagerAdapter(getSupportFragmentManager(), showId);
         TvShowIntentService_.intent(this).fetchAndSaveData(showId).start();
     }
-`
+
     @Receiver(actions = {TvShowIntentService.ACTION_SAVE_DONE})
     public void actionServiceDone() {
         setupViewPager();
