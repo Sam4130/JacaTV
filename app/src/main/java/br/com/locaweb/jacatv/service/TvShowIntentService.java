@@ -12,11 +12,13 @@ import org.androidannotations.annotations.rest.RestService;
 import org.androidannotations.api.support.app.AbstractIntentService;
 
 import java.sql.SQLException;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 import br.com.locaweb.jacatv.connection.RestConnection;
 import br.com.locaweb.jacatv.database.DatabaseHelper;
 import br.com.locaweb.jacatv.model.Show;
+import br.com.locaweb.jacatv.model.ShowResponse;
 
 @EIntentService
 public class TvShowIntentService extends AbstractIntentService {
@@ -43,6 +45,27 @@ public class TvShowIntentService extends AbstractIntentService {
                 @Override
                 public Object call() throws Exception {
                     daoShow.createOrUpdate(showInfo);
+                    return null;
+                }
+            });
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        Intent intent = new Intent(ACTION_SAVE_DONE);
+        sendBroadcast(intent);
+    }
+
+    @ServiceAction
+    void fetchShows() {
+        final List<ShowResponse> shows = connection.getShows();
+
+        try {
+            TransactionManager.callInTransaction(daoShow.getConnectionSource(), new Callable<Object>() {
+                @Override
+                public Object call() throws Exception {
+                    for(ShowResponse show:shows)
+                    daoShow.createOrUpdate(show.getShow());
                     return null;
                 }
             });

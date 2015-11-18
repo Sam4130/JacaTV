@@ -12,6 +12,9 @@ import br.com.locaweb.jacatv.model.ShowResponse;
 
 @Rest(rootUrl = "http://api.tvmaze.com", converters = MyGsonHttpMessageConverter.class)
 public interface RestConnection {
+    @Get("/shows")
+    List<ShowResponse> getShows();
+
     @Get("/shows/{show_id}/cast")
     List<Cast> getCast(long show_id);
 
