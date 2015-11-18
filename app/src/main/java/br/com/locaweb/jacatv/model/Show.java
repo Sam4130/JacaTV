@@ -1,19 +1,31 @@
 package br.com.locaweb.jacatv.model;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.ArrayList;
+import java.util.Date;
+
+@DatabaseTable
 public class Show {
+    @DatabaseField(id = true)
+    private Long id;
+
+    @DatabaseField
     private String name, type, language, status, summary;
 
+    @DatabaseField(dataType = DataType.SERIALIZABLE)
     private Image image;
 
+    @DatabaseField
     private Date premiered;
 
-    private HashMap<String, Float> rating;
+    @DatabaseField
+    private Float rating;
 
-    private List<String> genres;
+    @DatabaseField(dataType = DataType.SERIALIZABLE)
+    private ArrayList<String> genres;
 
     public String getName() {
         return name;
@@ -37,11 +49,17 @@ public class Show {
         this.language = language;
     }
 
-    public List<String> getGenres() {
-        return genres;
+    public Long getId() {
+        return id;
     }
 
-    public void setGenres(List<String> genres) {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public ArrayList<String> getGenres() { return genres; }
+
+    public void setGenres(ArrayList<String> genres) {
         this.genres = genres;
     }
 
@@ -77,11 +95,11 @@ public class Show {
         this.premiered = premiered;
     }
 
-    public HashMap<String, Float> getRating() {
+    public Float getRating() {
         return rating;
     }
 
-    public void setRating(HashMap<String, Float> rating) {
+    public void setRating(Float rating) {
         this.rating = rating;
     }
 }

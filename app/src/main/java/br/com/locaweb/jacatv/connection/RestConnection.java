@@ -8,16 +8,16 @@ import java.util.List;
 import br.com.locaweb.jacatv.MyGsonHttpMessageConverter;
 import br.com.locaweb.jacatv.model.Cast;
 import br.com.locaweb.jacatv.model.Episode;
-import br.com.locaweb.jacatv.model.Show;
+import br.com.locaweb.jacatv.model.ShowResponse;
 
 @Rest(rootUrl = "http://api.tvmaze.com", converters = MyGsonHttpMessageConverter.class)
 public interface RestConnection {
     @Get("/shows/{show_id}/cast")
-    List<Cast> getCast(int show_id);
+    List<Cast> getCast(long show_id);
 
     @Get("/shows/{show_id}/episodes")
-    List<Episode> getEpisodes(int show_id);
+    List<Episode> getEpisodes(long show_id);
 
     @Get("/shows/{show_id}")
-    Show getShow(int show_id);
+    ShowResponse getShow(long show_id);
 }
