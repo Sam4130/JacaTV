@@ -2,30 +2,29 @@ package br.com.locaweb.jacatv.fragment;
 
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.TextUtils;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
+import com.j256.ormlite.dao.Dao;
 import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
+import org.androidannotations.annotations.OrmLiteDao;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.rest.RestService;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import br.com.locaweb.jacatv.R;
-import br.com.locaweb.jacatv.adapter.EpisodeAdapter;
 import br.com.locaweb.jacatv.adapter.ShowAdapter;
-import br.com.locaweb.jacatv.connection.RestConnection;
-import br.com.locaweb.jacatv.model.Episode;
+import br.com.locaweb.jacatv.database.DatabaseHelper;
 import br.com.locaweb.jacatv.model.Show;
 
 @EFragment(R.layout.show_detail)
@@ -40,30 +39,31 @@ public class ShowDetailFragment extends Fragment {
     ImageView showPicture;
 
     @FragmentArg
-    int showId;
+    Long showId;
 
-    @RestService
-    RestConnection connection;
+    @OrmLiteDao(helper = DatabaseHelper.class)
+    Dao<Show, Long> daoTvShow;
+
+    private Show show;
 
     @AfterViews
     public void init() {
-        fetchData();
-
-    }
-
-    @Background
-    public void fetchData() {
-        Show show = connection.getShow(showId);
-        setDetails(show);
+        try {
+            show = daoTvShow.queryForId(showId);
+            List<Show> shows = daoTvShow.queryForAll();
+            setDetails(show);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @UiThread
     public void setDetails(Show show) {
         showName.setText(show.getName());
         showLanguage.setText(show.getLanguage());
-        showGenre.setText(show.getGenres().toString());
+        showGenre.setText(TextUtils.join(", ", show.getGenres()));
         showStatus.setText(show.getStatus());
-        showRating.setText(String.valueOf(show.getRating().get("average")));
+        showRating.setText(String.valueOf(show.getRating()));
         showSummary.setText(Html.fromHtml(show.getSummary()));
 
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy");

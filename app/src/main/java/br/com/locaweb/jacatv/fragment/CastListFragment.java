@@ -23,7 +23,7 @@ public class CastListFragment extends ListFragment {
     CastAdapter adapter;
 
     @FragmentArg
-    int showId;
+    Long showId;
 
     @RestService
     RestConnection connection;

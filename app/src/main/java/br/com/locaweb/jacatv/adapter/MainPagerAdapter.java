@@ -12,9 +12,9 @@ import br.com.locaweb.jacatv.fragment.ShowDetailFragment_;
 public class MainPagerAdapter extends FragmentPagerAdapter {
     private static final int PAGE_COUNT = 3;
     private static final CharSequence[] TITLES = {"Details", "Cast", "Episodes"};
-    private int showId;
+    private long showId;
 
-    public MainPagerAdapter(FragmentManager fm, int showId) {
+    public MainPagerAdapter(FragmentManager fm, long showId) {
         super(fm);
         this.showId = showId;
     }
@@ -23,7 +23,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return ShowDetailFragment_.builder().showId(showId).build();
+                return ShowDetailFragment_.builder().showId(this.showId).build();
             case 1:
                 return CastListFragment_.builder().showId(this.showId).build();
             case 2:

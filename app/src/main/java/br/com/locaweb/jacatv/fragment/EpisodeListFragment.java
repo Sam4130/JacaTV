@@ -12,6 +12,7 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.rest.RestService;
 
 import java.util.List;
+
 import br.com.locaweb.jacatv.adapter.EpisodeAdapter;
 import br.com.locaweb.jacatv.connection.RestConnection;
 import br.com.locaweb.jacatv.model.Episode;
@@ -22,7 +23,7 @@ public class EpisodeListFragment extends ListFragment {
     EpisodeAdapter adapter;
 
     @FragmentArg
-    int showId;
+    Long showId;
 
     @RestService
     RestConnection connection;
