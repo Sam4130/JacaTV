@@ -20,7 +20,6 @@ import org.androidannotations.annotations.ViewById;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 import br.com.locaweb.jacatv.R;
 import br.com.locaweb.jacatv.adapter.ShowAdapter;
@@ -50,7 +49,6 @@ public class ShowDetailFragment extends Fragment {
     public void init() {
         try {
             show = daoTvShow.queryForId(showId);
-            List<Show> shows = daoTvShow.queryForAll();
             setDetails(show);
         } catch (SQLException e) {
             e.printStackTrace();
