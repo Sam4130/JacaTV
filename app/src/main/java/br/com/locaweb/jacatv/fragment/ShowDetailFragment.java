@@ -10,7 +10,6 @@ import com.j256.ormlite.dao.Dao;
 import com.squareup.picasso.Picasso;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.OrmLiteDao;
@@ -22,15 +21,11 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import br.com.locaweb.jacatv.R;
-import br.com.locaweb.jacatv.adapter.ShowAdapter;
 import br.com.locaweb.jacatv.database.DatabaseHelper;
 import br.com.locaweb.jacatv.model.Show;
 
 @EFragment(R.layout.show_detail)
 public class ShowDetailFragment extends Fragment {
-    @Bean
-    ShowAdapter adapter;
-
     @ViewById
     TextView showName, showLanguage, showGenre, showStatus, showRating, showPremiered, showSummary;
 
