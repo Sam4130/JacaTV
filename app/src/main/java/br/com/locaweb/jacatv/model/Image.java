@@ -1,6 +1,9 @@
 package br.com.locaweb.jacatv.model;
 
-public class Image {
+import java.io.Serializable;
+
+public class Image implements Serializable {
+
     private String medium, original;
 
     public String getMedium() {
