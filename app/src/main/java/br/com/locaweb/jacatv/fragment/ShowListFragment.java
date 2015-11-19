@@ -1,7 +1,9 @@
 package br.com.locaweb.jacatv.fragment;
 
 import android.support.v4.app.ListFragment;
+import android.view.View;
 import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import com.j256.ormlite.dao.Dao;
 
@@ -15,6 +17,7 @@ import org.androidannotations.annotations.UiThread;
 import java.sql.SQLException;
 import java.util.List;
 
+import br.com.locaweb.jacatv.DetailsActivity_;
 import br.com.locaweb.jacatv.adapter.ShowAdapter;
 import br.com.locaweb.jacatv.database.DatabaseHelper;
 import br.com.locaweb.jacatv.model.Show;
@@ -40,6 +43,12 @@ public class ShowListFragment extends ListFragment {
     public void init() {
         fetchData();
         setListAdapter(adapter);
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        Long showId = adapter.getItem(position).getId();
+        DetailsActivity_.intent(this).showId(showId).start();
     }
 
     @Receiver(actions = {TvShowIntentService.ACTION_SAVE_DONE})

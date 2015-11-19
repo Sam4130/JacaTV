@@ -14,6 +14,13 @@ import br.com.locaweb.jacatv.database.DatabaseHelper;
 import br.com.locaweb.jacatv.model.Show;
 import br.com.locaweb.jacatv.service.TvShowIntentService_;
 
+/**
+ * TODO:
+ * Fazer lazy-loading da lista de shows (scroll infinito)
+ * Busca - se não encontrar no banco, buscar no site
+ * Usar SharedPreferences annotation para armazenar lastUpdate
+ */
+
 @EActivity(R.layout.activity_main)
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +33,5 @@ public class MainActivity extends AppCompatActivity {
     @AfterViews
     public void init() {
         TvShowIntentService_.intent(this).fetchShows().start();
-
     }
 }

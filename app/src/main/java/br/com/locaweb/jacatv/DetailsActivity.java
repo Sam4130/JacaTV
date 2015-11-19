@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.Receiver;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
@@ -24,7 +25,8 @@ public class DetailsActivity extends AppCompatActivity {
 
     MainPagerAdapter adapter;
 
-    private static long showId = 76;
+    @Extra
+    long showId;
 
     @AfterViews
     public void init() {
